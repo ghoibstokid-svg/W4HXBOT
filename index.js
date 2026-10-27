@@ -3,7 +3,7 @@
 //  TikTok Live → Discord Webhook
 // ============================================================
 
-const { WebcastPushConnection } = require('tiktok-live-connector');
+const { TikTokLiveConnection } = require('tiktok-live-connector');
 
 // ============================================================
 //  🔧 KONFIGURASI — EDIT DI SINI
