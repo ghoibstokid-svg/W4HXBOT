@@ -64,7 +64,7 @@ function connectToTikTok() {
         options.signApiKey = SIGN_API_KEY;
     }
 
-    tiktokConnection = new WebcastPushConnection(TIKTOK_USERNAME, options);
+    tiktokConnection = new TikTokLiveConnection(TIKTOK_USERNAME, options);
 
     tiktokConnection.connect()
         .then(state => {
