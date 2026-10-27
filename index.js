@@ -1,5 +1,6 @@
 // ============================================================
-//  W4HX NOTIFICATION LIVE — WEBHOOK VERSION (DETAIL & FIXED)
+//  W4HX NOTIFICATION LIVE — WEBHOOK VERSION (FULL FIXED)
+//  TikTok Live → Discord Webhook (Semua Komentar)
 // ============================================================
 
 const { TikTokLiveConnection } = require('tiktok-live-connector');
@@ -103,15 +104,26 @@ async function connectToTikTok() {
     });
 
     // ========================================================
-    //  LOGIKA UTAMA: SEMUA KOMENTAR
+    //  LOGIKA UTAMA: SEMUA KOMENTAR (DENGAN FALLBACK)
     // ========================================================
     tiktokConnection.on('chat', async (data) => {
         try {
-            const komentar   = data.comment || '';
-            const userTiktok = data.uniqueId || 'unknown';
-            const nickname   = data.nickname || userTiktok;
+            // 🔍 LOG DATA MENTAH (untuk debugging)
+            // Kalau masih unknown, lihat log ini di console Bot-Hosting
+            console.log("📦 [DEBUG] Data chat mentah:", JSON.stringify(data, null, 2));
+
+            // Baca dengan fallback untuk berbagai kemungkinan struktur
+            const komentar   = data.comment || data.content || '';
+            const userTiktok = data.uniqueId || data.user?.uniqueId || data.user?.unique_id || 'unknown';
+            const nickname   = data.nickname || data.user?.nickname || data.user?.nick_name || userTiktok;
             const waktu      = new Date().toLocaleTimeString('id-ID', { hour12: false });
             const tanggal    = new Date().toLocaleDateString('id-ID');
+
+            // Lewati jika komentar benar-benar kosong
+            if (!komentar) {
+                console.log("⚠️ [W4HX] Komentar kosong diterima, dilewati.");
+                return;
+            }
 
             komentarCounter++;
 
@@ -147,7 +159,6 @@ function scheduleReconnect(ms) {
 // ============================================================
 async function sendToWebhook(data) {
     try {
-        // Format pesan yang JELAS dan DETAIL
         const payload = {
             username: "W4HX Live Reader",
             avatar_url: "https://i.imgur.com/4M34hi2.png",
