@@ -17,7 +17,7 @@ const WEBHOOK_URL = "https://discord.com/api/webhooks/1564444731528974457/0lwatf
 const TIKTOK_USERNAME = "w4hxareaofficial";
 
 // API Key EulerStream
-const SIGN_API_KEY = "ad7c9b408e98a9cab0ff1cc22d654ba1b99f4a7ebfe1374de178cb7b6c9e86c6";
+const SIGN_API_KEY = "sEfM6u1wW-gYJ0haZOo2sFESLcCjkcrfWnw5qfzUJ1t6Mfkred6mh3bvgUZvN7i_";
 
 // ============================================================
 //  VALIDASI
