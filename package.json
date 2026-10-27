@@ -1,13 +1,12 @@
 {
   "name": "w4hx-notification-live",
   "version": "1.0.0",
-  "description": "W4HX Notification Live - TikTok Live to Discord",
+  "description": "W4HX Notification Live - TikTok to Discord Webhook",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "discord.js": "^14.16.3",
     "tiktok-live-connector": "^2.0.0"
   }
 }
